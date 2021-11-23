@@ -37,6 +37,16 @@ struct Home: View {
                 .padding(.horizontal)
                 .padding(.top, 30)
                 
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 30) {
+                        ForEach(0..<5) { item in
+                            SectionView()
+                        }
+                    }
+                    .padding(30)
+                    .padding(.bottom, 30)
+                }
+                
                 Spacer()
             }
             .padding(.top, 44)
