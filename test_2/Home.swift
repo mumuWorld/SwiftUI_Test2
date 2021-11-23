@@ -39,8 +39,8 @@ struct Home: View {
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 30) {
-                        ForEach(0..<5) { item in
-                            SectionView()
+                        ForEach(sectionDatas) { item in
+                            SectionView(section: item)
                         }
                     }
                     .padding(30)
@@ -89,3 +89,21 @@ struct Home_Previews: PreviewProvider {
         Home()
     }
 }
+
+
+struct Section: Identifiable {
+    var id = UUID()
+    var title: String
+    var text: String
+    var imgStr: String
+    var logoStr: String
+    var color: Color
+}
+
+let sectionDatas = [
+    Section(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7)),
+    Section(title: "Section1", text: "Illustration2", imgStr: "Illustration2", logoStr: "Logo", color: Color.blue.opacity(0.7)),
+    Section(title: "Section0", text: "sdfasdf", imgStr: "Illustration3", logoStr: "Logo", color: Color.black.opacity(0.7)),
+    Section(title: "Section0", text: "sdfasdfasdfs", imgStr: "Illustration4", logoStr: "Logo", color: Color.green.opacity(0.7)),
+    Section(title: "Section5", text: "sdfsdfsdfsdfs", imgStr: "Illustration5", logoStr: "Logo", color: Color.red.opacity(0.7))
+]

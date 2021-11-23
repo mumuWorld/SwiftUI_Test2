@@ -8,19 +8,21 @@
 import SwiftUI
 
 struct SectionView: View {
+    var section: Section
+    
     var body: some View {
         VStack {
             HStack(alignment: .top, spacing: 0) {
-                Text("Hello, World! test designs in ")
+                Text(section.title)
                     .font(.system(size: 28, weight: .bold, design: .default))
                 .frame(width: 160, alignment: .leading)
                 Spacer()
-                Image("Logo")
+                Image(section.logoStr)
             }
-            Text("Hello, World! test designs in")
+            Text(section.text)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            Image("Illustration4")
+            Image(section.imgStr)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 210)
@@ -28,14 +30,14 @@ struct SectionView: View {
         .padding(.top, 20)
         .padding(.horizontal, 20)
         .frame(width: 275, height: 275, alignment: .center)
-        .background(Color("background6"))
+        .background(section.color)
         .cornerRadius(30)
-        .shadow(color: Color("background5").opacity(0.3), radius: 20, x: 0, y: 20)
+        .shadow(color: section.color.opacity(0.3), radius: 20, x: 0, y: 20)
     }
 }
 
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
-        SectionView()
+        SectionView(section: Section(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7)))
     }
 }
