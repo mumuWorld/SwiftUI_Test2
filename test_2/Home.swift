@@ -12,7 +12,9 @@ struct Home: View {
     @State var showProfile: Bool = false
     
     @State var viewState: CGSize = CGSize.zero
-
+    
+    @State var presented: Bool = false
+    
     var body: some View {
         ZStack {
             
@@ -24,6 +26,7 @@ struct Home: View {
                     Text("Welocome")
                         .font(.system(size: 28, weight: .bold, design: .default))
                     Spacer()
+                    
                     Button(action: {
                         showProfile.toggle()
                     }) {
@@ -32,6 +35,23 @@ struct Home: View {
                             .resizable()
                             .frame(width: 36, height: 36, alignment: .leading)
                             .clipShape(Circle())
+                    }
+
+                    Button(action: {
+                        self.presented.toggle()
+                    }) {
+                        Image(systemName: "bell")
+                            .renderingMode(.original)
+                            .font(.system(size: 16, weight: .medium, design: .default))
+                            .frame(width: 36, height: 36, alignment: .center)
+                            .background(Color.white)
+                            .clipShape(Circle())
+                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10)
+
+                    }
+                    .sheet(isPresented: $presented) {
+                        ContentView()
                     }
                 }
                 .padding(.horizontal)
@@ -91,6 +111,7 @@ struct Home: View {
 }
 
 struct Home_Previews: PreviewProvider {
+
     static var previews: some View {
         Home()
     }
