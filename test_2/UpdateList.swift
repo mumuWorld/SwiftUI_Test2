@@ -12,7 +12,7 @@ struct UpdateList: View {
         NavigationView {
             List(updates) { item in
                 NavigationLink {
-                    Text(item.text)
+                    UpdateDetail(update: item)
                 } label: {
                     HStack {
                         Image(item.image)
