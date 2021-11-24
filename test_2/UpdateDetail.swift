@@ -11,7 +11,7 @@ struct UpdateDetail: View {
     var update: Update = updates[0]
     
     var body: some View {
-        List() {
+        List {
             VStack {
                 Image(update.image)
                     .resizable()

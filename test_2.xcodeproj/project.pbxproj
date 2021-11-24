@@ -15,6 +15,7 @@
 		B49C7F93274CE2AB00FA2D88 /* SectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C7F92274CE2AB00FA2D88 /* SectionView.swift */; };
 		B49C7F95274D06EE00FA2D88 /* UpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49C7F94274D06EE00FA2D88 /* UpdateList.swift */; };
 		B4BB022E274E2ABD00EB124D /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BB022D274E2ABD00EB124D /* UpdateDetail.swift */; };
+		B4BB0230274E2ED500EB124D /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BB022F274E2ED500EB124D /* UpdateStore.swift */; };
 		B4C5C148274B7B2B0012EAD7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5C147274B7B2B0012EAD7 /* Home.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		B49C7F92274CE2AB00FA2D88 /* SectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionView.swift; sourceTree = "<group>"; };
 		B49C7F94274D06EE00FA2D88 /* UpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateList.swift; sourceTree = "<group>"; };
 		B4BB022D274E2ABD00EB124D /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
+		B4BB022F274E2ED500EB124D /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 		B4C5C147274B7B2B0012EAD7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 				B481D3F3274A943A000611EC /* MenuView.swift */,
 				B49C7F94274D06EE00FA2D88 /* UpdateList.swift */,
 				B4BB022D274E2ABD00EB124D /* UpdateDetail.swift */,
+				B4BB022F274E2ED500EB124D /* UpdateStore.swift */,
 				B4C5C147274B7B2B0012EAD7 /* Home.swift */,
 				B49C7F92274CE2AB00FA2D88 /* SectionView.swift */,
 				B4925423273C1D8900E6ABC5 /* Assets.xcassets */,
@@ -157,6 +160,7 @@
 				B4925422273C1D8800E6ABC5 /* ContentView.swift in Sources */,
 				B49C7F93274CE2AB00FA2D88 /* SectionView.swift in Sources */,
 				B49C7F95274D06EE00FA2D88 /* UpdateList.swift in Sources */,
+				B4BB0230274E2ED500EB124D /* UpdateStore.swift in Sources */,
 				B481D3F4274A943A000611EC /* MenuView.swift in Sources */,
 				B4C5C148274B7B2B0012EAD7 /* Home.swift in Sources */,
 				B4925420273C1D8800E6ABC5 /* test_2App.swift in Sources */,
