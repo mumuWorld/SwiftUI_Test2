@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B465C271274BE15600DE27EB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B465C270274BE15600DE27EB /* HomeView.swift */; };
 		B481D3F4274A943A000611EC /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B481D3F3274A943A000611EC /* MenuView.swift */; };
 		B4925420273C1D8800E6ABC5 /* test_2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B492541F273C1D8800E6ABC5 /* test_2App.swift */; };
 		B4925422273C1D8800E6ABC5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4925421273C1D8800E6ABC5 /* ContentView.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B465C270274BE15600DE27EB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B481D3F3274A943A000611EC /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		B492541C273C1D8800E6ABC5 /* test_2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test_2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B492541F273C1D8800E6ABC5 /* test_2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_2App.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				B4925421273C1D8800E6ABC5 /* ContentView.swift */,
 				B481D3F3274A943A000611EC /* MenuView.swift */,
 				B4C5C147274B7B2B0012EAD7 /* Home.swift */,
+				B465C270274BE15600DE27EB /* HomeView.swift */,
 				B4925423273C1D8900E6ABC5 /* Assets.xcassets */,
 				B4925428273C1D8900E6ABC5 /* Info.plist */,
 				B4925425273C1D8900E6ABC5 /* Preview Content */,
@@ -147,6 +150,7 @@
 				B4925422273C1D8800E6ABC5 /* ContentView.swift in Sources */,
 				B481D3F4274A943A000611EC /* MenuView.swift in Sources */,
 				B4C5C148274B7B2B0012EAD7 /* Home.swift in Sources */,
+				B465C271274BE15600DE27EB /* HomeView.swift in Sources */,
 				B4925420273C1D8800E6ABC5 /* test_2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
