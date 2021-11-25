@@ -8,26 +8,35 @@
 import SwiftUI
 
 struct RingView: View {
+    var color1 = Color("background9")
+    var color2 = Color("background5")
+    var width: CGFloat = 300
+    var height: CGFloat = 300
+    //完成度
+    var percent: CGFloat = 88
+    
     var body: some View {
+        let multiplier: CGFloat = width / 44
+        let progress = 1 - percent / 100
         ZStack {
             Circle()
                 .stroke(
                     Color.black.opacity(0.1),
-                style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round, miterLimit: .infinity))
-                .frame(width: 44, height: 44, alignment: .center)
+                style: StrokeStyle(lineWidth: 5 * multiplier, lineCap: .round, lineJoin: .round, miterLimit: .infinity))
+                .frame(width: width, height: height, alignment: .center)
             
             Circle()
-                .trim(from: 0.2, to: 1)
+                .trim(from: progress, to: 1)
                 .stroke(
-                    LinearGradient(colors: [Color.purple, Color.green], startPoint: .topLeading, endPoint: .bottomTrailing),
-                style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round, miterLimit: .infinity))
+                    LinearGradient(colors: [color1, color2], startPoint: .topLeading, endPoint: .bottomTrailing),
+                style: StrokeStyle(lineWidth: 5 * multiplier, lineCap: .round, lineJoin: .round, miterLimit: .infinity))
                 .rotationEffect(.degrees(90))
                 .rotation3DEffect(.degrees(180), axis: (x: 1, y: 0, z: 0))
-                .frame(width: 44, height: 44, alignment: .center)
-                .shadow(color: Color.purple.opacity(0.2), radius: 20, x: 0, y: 3)
+                .frame(width: width, height: height, alignment: .center)
+                .shadow(color: color2.opacity(0.2), radius: 3 * multiplier, x: 0, y: 3)
             
-            Text("80%")
-                .font(.system(size: 15, weight: .bold, design: .default))
+            Text("\(Int(percent))%")
+                .font(.system(size: 15 * multiplier, weight: .bold, design: .default))
         }
         
     }
