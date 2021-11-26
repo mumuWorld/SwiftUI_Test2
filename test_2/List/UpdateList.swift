@@ -57,7 +57,7 @@ struct UpdateList: View {
 //            .listStyle(PlainListStyle())
             .navigationBarTitle(Text("Updates"))
             .navigationBarItems(leading: Button(action: { addUpdate() }, label: {
-                Text("tesetest")
+                Text("add test")
             }), trailing: EditButton())
         }
     }

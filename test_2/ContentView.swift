@@ -91,15 +91,15 @@ struct ContentView: View {
                             self.show = false
                         })
                 )
-                .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 0))
+                .animation(.spring(response: 0.2, dampingFraction: 0.6, blendDuration: 0))
             
             Text("value= \(bottomState.height)").offset(x: 0, y: -300)
             
-            BottomCardView()
+            BottomCardView(showProgress: $showCard)
                 .offset(x: 0, y: showCard ? 360 : 1000)
                 .offset(x: 0, y: self.bottomState.height)
                 .blur(radius: show ? 20 : 0)
-                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.8))
+                .animation(.timingCurve(0.2, 0.8, 0.2, 1, duration: 0.2))
                 .gesture(
                     DragGesture().onChanged({ value in
                         self.bottomState = value.translation
@@ -193,6 +193,9 @@ struct TitleView: View {
 }
 
 struct BottomCardView: View {
+    
+    @Binding var showProgress: Bool
+
     var body: some View {
         VStack {
             Rectangle()
@@ -204,6 +207,28 @@ struct BottomCardView: View {
                 .multilineTextAlignment(.center)
                 .lineSpacing(4)
                 .padding()
+            
+            HStack {
+                RingView(color1: Color("background9"), color2: Color("background5"), width: 88, height: 88, percent: 70, show: $showProgress)
+                    .animation(Animation.easeInOut.delay(0.3))
+                
+                Spacer()
+                    .frame(width: 20)
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("SwiftUI").fontWeight(.bold)
+                    Text("SwiftUI complete")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .lineSpacing(4)
+                }
+                .padding(20)
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 3)
+            }
+            .padding(20)
+            
             Spacer()
         }
         .frame(maxWidth: .infinity)

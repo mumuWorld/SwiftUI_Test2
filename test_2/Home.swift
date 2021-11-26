@@ -33,70 +33,7 @@ struct Home: View {
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
                 .edgesIgnoringSafeArea(.all)
                 
-            VStack {
-                HStack {
-                    Text("Welocome")
-                        .font(.system(size: 28, weight: .bold, design: .default))
-                    Spacer()
-                    
-                    Button(action: {
-                        showProfile.toggle()
-                    }) {
-                        Image("avatar")
-                            .renderingMode(.original)
-                            .resizable()
-                            .frame(width: 36, height: 36, alignment: .leading)
-                            .clipShape(Circle())
-                    }
-
-                    Button(action: {
-                        self.presented.toggle()
-                    }) {
-                        Image(systemName: "bell")
-                            .renderingMode(.original)
-                            .font(.system(size: 16, weight: .medium, design: .default))
-                            .frame(width: 36, height: 36, alignment: .center)
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10)
-
-                    }
-                    .sheet(isPresented: $presented) {
-                        UpdateList()
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 30)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 30) {
-                        ForEach(sectionDatas) { item in
-                            GeometryReader { geometry in
-                                SectionView(section: item)
-                                    .rotation3DEffect(
-                                        Angle(degrees: Double((geometry.frame(in: .global).minX - 30) / -20)), axis: (x: 0, y: 1, z: 0)
-                                    )
-                            }
-                            .frame(width: 275, height: 275, alignment: .leading)
-                        }
-                    }
-                    .padding(30)
-                    .padding(.bottom, 30)
-                }
-                
-                Spacer()
-            }
-            .padding(.top, 44)
-            .background(Color.white)
-            //圆角
-            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
-            .offset(y: showProfile ? -450 : 0)
-            .rotation3DEffect(Angle(degrees: showProfile ? Double(viewState.height / 10) - 10: 0), axis: (x: 1, y: 0, z: 0))
-            .scaleEffect(showProfile ? 0.9 : 1)
-            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
-            .edgesIgnoringSafeArea(.all)
+            
             
             MenuView()
                 .background(Color.black.opacity(0.001))
