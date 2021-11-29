@@ -11,27 +11,42 @@ struct CourseList: View {
     
     @State var courses = courseDatas
 
+    @State var active: Bool = false
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 30) {
-                Text("Course")
-                    .font(.system(size: 28, weight: .bold, design: .default))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 30)
-                
-                //遍历数据源 添加组件
-                ForEach(courses.indices, id: \.self) { index in
-                    GeometryReader { gemetry in
-                        CourseView(show: self.$courses[index].show, section: courses[index])
-                            .offset(y: self.courses[index].show ? -gemetry.frame(in: .global).minY : 0)
-                    }
-                    .frame(height: self.courses[index].show ? screen.height : 280, alignment: .center)
-                    .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
-                }
-            }
-            .frame(width: screen.width)
-            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+        ZStack {
+            Color.black.opacity(active ? 0.5 : 0)
+                .animation(.linear)
+                .edgesIgnoringSafeArea(.all)
             
+            
+            ScrollView {
+                VStack(spacing: 30) {
+                    Text("Course")
+                        .font(.system(size: 28, weight: .bold, design: .default))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 30)
+                    
+                    //遍历数据源 添加组件
+                    ForEach(courses.indices, id: \.self) { index in
+                        GeometryReader { gemetry in
+                            CourseView(
+                                show: self.$courses[index].show,
+                                section: courses[index],
+                                active: $active)
+                                .offset(y: self.courses[index].show ? -gemetry.frame(in: .global).minY : 0)
+                        }
+                        .frame(height: 280, alignment: .center)
+                        .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
+                        .zIndex(self.courses[index].show ? 1 : 0)
+                    }
+                }
+                .frame(width: screen.width)
+                .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+            }
+            .statusBar(hidden: active ? true : false)
+            //加入此动画配置，会影响到子时图
+//            .animation(.interactiveSpring())
         }
     }
 }
@@ -43,12 +58,11 @@ struct CourseList_Previews: PreviewProvider {
 }
 
 struct CourseView: View {
-//    @State var show: Bool = false
     @Binding var show: Bool
     
     var section: Course
     
-//    var section: Section  = Section(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7))
+    @Binding var active: Bool
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -75,8 +89,10 @@ struct CourseView: View {
                         Text(section.title)
                             .font(.system(size: 28, weight: .bold, design: .default))
                             .frame(width: 160, alignment: .leading)
+                            .foregroundColor(.white)
                         Text(section.text)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundColor(.white.opacity(0.7))
                     }
                     Spacer()
                     ZStack {
@@ -103,20 +119,21 @@ struct CourseView: View {
             .padding(.top, show ? 30 : 0)
             .frame(
                 maxWidth: show ? .infinity : screen.width - 60,
-                maxHeight: show ? 480 : 280
+                maxHeight: show ? 460 : 280
             )
-            //        .frame(width: screen.width - 60, height: 275, alignment: .center)
             .background(section.color)
-            .cornerRadius(30)
+            .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
             .shadow(color: section.color.opacity(0.3), radius: 20, x: 0, y: 20)
-            //        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+//            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             //        .animation(.interactiveSpring())
             //        .animation(.spring())
             .onTapGesture {
                 self.show.toggle()
+                self.active.toggle()
             }
         }
-//        .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1))
+        .frame(height: show ? screen.height : 280)
+        .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
         .edgesIgnoringSafeArea(.all)
     }
 }
