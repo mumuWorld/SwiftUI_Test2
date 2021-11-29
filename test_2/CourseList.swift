@@ -13,12 +13,13 @@ struct CourseList: View {
 
     @State var active: Bool = false
     
+    @State var activeIndex: Int = -1
+
     var body: some View {
         ZStack {
             Color.black.opacity(active ? 0.5 : 0)
                 .animation(.linear)
                 .edgesIgnoringSafeArea(.all)
-            
             
             ScrollView {
                 VStack(spacing: 30) {
@@ -33,8 +34,14 @@ struct CourseList: View {
                             CourseView(
                                 show: self.$courses[index].show,
                                 section: courses[index],
-                                active: $active)
+                                active: $active,
+                                index: index,
+                                activeIndex: $activeIndex
+                            )
                                 .offset(y: self.courses[index].show ? -gemetry.frame(in: .global).minY : 0)
+                                .opacity(self.activeIndex != index && self.active ? 0 : 1)
+                                .scaleEffect(self.activeIndex != index && self.active ? 0.5 : 1)
+                                .offset(x: self.activeIndex != index && self.active ? screen.width : 0)
                         }
                         .frame(height: 280, alignment: .center)
                         .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
@@ -63,6 +70,10 @@ struct CourseView: View {
     var section: Course
     
     @Binding var active: Bool
+    
+    var index: Int
+    
+    @Binding var activeIndex: Int
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -130,6 +141,11 @@ struct CourseView: View {
             .onTapGesture {
                 self.show.toggle()
                 self.active.toggle()
+                if self.show {
+                    self.activeIndex = index
+                } else {
+                    self.activeIndex = -1
+                }
             }
         }
         .frame(height: show ? screen.height : 280)

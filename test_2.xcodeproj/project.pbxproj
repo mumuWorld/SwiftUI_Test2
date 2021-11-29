@@ -76,7 +76,6 @@
 		B492541E273C1D8800E6ABC5 /* test_2 */ = {
 			isa = PBXGroup;
 			children = (
-				B49AE4D82754B37400579A22 /* New Group */,
 				B49ABB1E274F9D2700E311DC /* Resource */,
 				B492F9E2274E4748009AB502 /* List */,
 				B492541F273C1D8800E6ABC5 /* test_2App.swift */,
@@ -120,13 +119,6 @@
 				B4925423273C1D8900E6ABC5 /* Assets.xcassets */,
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		B49AE4D82754B37400579A22 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
