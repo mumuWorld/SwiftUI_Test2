@@ -8,12 +8,31 @@
 import SwiftUI
 
 struct CourseList: View {
-    var section: Section  = Section(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7))
-    var title: String = "section title"
-    var logoStr: String = "section title"
+    
+    @State var courses = courseDatas
 
     var body: some View {
-            CourseView()
+        ScrollView {
+            VStack(spacing: 30) {
+                Text("Course")
+                    .font(.system(size: 28, weight: .bold, design: .default))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 30)
+                
+                //遍历数据源 添加组件
+                ForEach(courses.indices, id: \.self) { index in
+                    GeometryReader { gemetry in
+                        CourseView(show: self.$courses[index].show, section: courses[index])
+                            .offset(y: self.courses[index].show ? -gemetry.frame(in: .global).minY : 0)
+                    }
+                    .frame(height: self.courses[index].show ? screen.height : 280, alignment: .center)
+                    .frame(maxWidth: self.courses[index].show ? .infinity : screen.width - 60)
+                }
+            }
+            .frame(width: screen.width)
+            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
+            
+        }
     }
 }
 
@@ -24,21 +43,19 @@ struct CourseList_Previews: PreviewProvider {
 }
 
 struct CourseView: View {
-    @State var show: Bool = false
+//    @State var show: Bool = false
+    @Binding var show: Bool
     
-    var section: Section  = Section(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7))
+    var section: Course
+    
+//    var section: Section  = Section(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7))
     
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
-                Text("The stiffness of the spring, defined as an approximate duration in seconds. A value of zero requests an infinitely-stiff spring, suitable for driving interactive animations")
-                
-                Text("response")
+                Text(section.title)
                     .font(.title).bold()
-                
-                Text("The stiffness of the spring, defined as an approximate duration in seconds. A value of zero requests an infinitely-stiff spring, suitable for driving interactive animation The amount of drag applied to the value being animated, as a fraction of an estimate of amount needed to produce critical damping. The duration in seconds over which to interpolate changes to the response value of the spring The duration in seconds over which to interpolate changes to the response value of the springThe duration in seconds over which to interpolate changes to the response value of the springThe duration in seconds over which to interpolate changes to the response value of the spring The stiffness of the spring, defined as an approximate duration in seconds. A value of zero requests an infinitely-stiff spring, suitable for driving interactive animations")
-                
-                Text("The duration in seconds over which to interpolate changes to the response value of the spring The duration in seconds over which to interpolate changes to the response value of the spring The duration in seconds over which to interpolate changes to the response value of the spring ")
+                Text(section.text)
             }
             .padding(30)
             .frame(
@@ -99,7 +116,25 @@ struct CourseView: View {
                 self.show.toggle()
             }
         }
-        .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1))
+//        .animation(.spring(response: 0.3, dampingFraction: 0.6, blendDuration: 1))
         .edgesIgnoringSafeArea(.all)
     }
 }
+
+struct Course: Identifiable {
+    var id = UUID()
+    var title: String
+    var text: String
+    var imgStr: String
+    var logoStr: String
+    var color: Color
+    var show: Bool = false
+}
+
+let courseDatas = [
+    Course(title: "Section0", text: "Section0Section0Section0Section0Section0", imgStr: "Illustration1", logoStr: "Logo", color: Color.green.opacity(0.7)),
+    Course(title: "Section1", text: "Illustration2", imgStr: "Illustration2", logoStr: "Logo", color: Color.blue.opacity(0.7)),
+    Course(title: "Section0", text: "sdfasdf", imgStr: "Illustration3", logoStr: "Logo", color: Color.black.opacity(0.7)),
+    Course(title: "Section0", text: "sdfasdfasdfs", imgStr: "Illustration4", logoStr: "Logo", color: Color.green.opacity(0.7)),
+    Course(title: "Section5", text: "sdfsdfsdfsdfs", imgStr: "Illustration5", logoStr: "Logo", color: Color.red.opacity(0.7))
+]
