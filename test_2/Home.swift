@@ -15,15 +15,20 @@ struct Home: View {
     
     @State var presented: Bool = false
     
+    @State var showContent: Bool = false
+    
     var body: some View {
         ZStack {
             
             Color.gray.opacity(0.6)
                 .edgesIgnoringSafeArea(.all)
             
-            HomeView(showProfile: $showProfile)
+            HomeView(showProfile: $showProfile, showContent: $showContent)
                 .padding(.top, 44)
-                .background(Color.white)
+                .background(
+                    Color.white
+//                    LinearGradient(gradient: Gradient(colors: [Color.green, Color.red]), startPoint: .leading, endPoint: .trailing)
+                )
                 //圆角
                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
@@ -32,9 +37,7 @@ struct Home: View {
                 .scaleEffect(showProfile ? 0.9 : 1)
                 .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
                 .edgesIgnoringSafeArea(.all)
-                
-            
-            
+
             MenuView()
                 .background(Color.black.opacity(0.001))
                 .offset(y: showProfile ? 0 : screen.height)
@@ -55,6 +58,31 @@ struct Home: View {
                     })
                 )
                
+            if showContent {
+                Color.white.edgesIgnoringSafeArea(.all)
+                
+                ContentView()
+                
+                VStack {
+                    HStack {
+                        Spacer()
+                        
+                        Image(systemName: "xmark")
+                            .frame(width: 36, height: 36)
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                        .clipShape(Circle())
+                    }
+                    Spacer()
+                }
+                .offset(x: -16, y: 16)
+                .transition(.move(edge: .top))
+                .animation(.spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0))
+                .onTapGesture {
+                    self.showContent = false
+                }
+            }
+
         }
     }
 }

@@ -12,68 +12,88 @@ struct HomeView: View {
     @Binding var showProfile: Bool
     
     @State var presented: Bool = false
+    
+    @Binding var showContent: Bool
 
     var body: some View {
-        VStack {
+        ScrollView {
             VStack {
-                HStack {
-                    Text("Welocome")
-                        .modifier(CustomFontModifiers(size: 28))
-                    Spacer()
-                    
-                    AvatarView(showProfile: $showProfile)
-
-                    Button(action: {
-                        self.presented.toggle()
-                    }) {
-                        Image(systemName: "bell")
-                            .renderingMode(.original)
-                            .font(.system(size: 16, weight: .medium, design: .default))
-                            .frame(width: 36, height: 36, alignment: .center)
-                            .background(Color.white)
-                            .clipShape(Circle())
-                            .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
-                            .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10)
-                    }
-                    .sheet(isPresented: $presented) {
-                        UpdateList()
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.top, 30)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    WatchingView()
-                        .padding(.horizontal, 30)
-                        .padding(.bottom, 20)
-                }
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 30) {
-                        ForEach(sectionDatas) { item in
-                            GeometryReader { geometry in
-                                SectionView(section: item)
-                                    .rotation3DEffect(
-                                        Angle(degrees: Double((geometry.frame(in: .global).minX - 30) / -20)), axis: (x: 0, y: 1, z: 0)
-                                    )
-                            }
-                            .frame(width: 275, height: 275, alignment: .leading)
+                VStack {
+                    HStack {
+                        Text("Welocome")
+                            .modifier(CustomFontModifiers(size: 28))
+                        Spacer()
+                        
+                        AvatarView(showProfile: $showProfile)
+                        
+                        Button(action: {
+                            self.presented.toggle()
+                        }) {
+                            Image(systemName: "bell")
+                                .renderingMode(.original)
+                                .font(.system(size: 16, weight: .medium, design: .default))
+                                .frame(width: 36, height: 36, alignment: .center)
+                                .background(Color.white)
+                                .clipShape(Circle())
+                                .shadow(color: Color.black.opacity(0.1), radius: 1, x: 0, y: 1)
+                                .shadow(color: Color.black.opacity(0.3), radius: 10, x: 0, y: 10)
+                        }
+                        .sheet(isPresented: $presented) {
+                            UpdateList()
                         }
                     }
-                    .padding(30)
-                    .padding(.bottom, 30)
+                    .padding(.horizontal)
+                    .padding(.top, 30)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        WatchingView()
+                            .padding(.horizontal, 30)
+                            .padding(.bottom, 20)
+                            .onTapGesture {
+                                self.showContent = true
+                            }
+                    }
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 30) {
+                            ForEach(sectionDatas) { item in
+                                GeometryReader { geometry in
+                                    SectionView(section: item)
+                                        .rotation3DEffect(
+                                            Angle(degrees: Double((geometry.frame(in: .global).minX - 30) / -20)), axis: (x: 0, y: 1, z: 0)
+                                        )
+                                }
+                                .frame(width: 275, height: 275, alignment: .leading)
+                            }
+                        }
+                        .padding(30)
+                        .padding(.bottom, 30)
+                    }
+                    .offset(y: -30)
+                    
+                    VStack {
+                        HStack {
+                            Text("Courses")
+                                .font(.title).bold()
+                            Spacer()
+                        }
+                        .padding(.leading, 30)
+                        
+                        SectionView(section: sectionDatas[2] ,width: screen.width - 60, height: 275)
+                    }
+                    .offset(y: -70)
+
+                    Spacer()
                 }
-                
                 Spacer()
             }
-            Spacer()
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showProfile: .constant(false))
+        HomeView(showProfile: .constant(false), showContent: .constant(false))
     }
 }
 
