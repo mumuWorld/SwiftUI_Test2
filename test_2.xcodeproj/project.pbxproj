@@ -23,6 +23,7 @@
 		B4BB022E274E2ABD00EB124D /* UpdateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BB022D274E2ABD00EB124D /* UpdateDetail.swift */; };
 		B4BB0230274E2ED500EB124D /* UpdateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BB022F274E2ED500EB124D /* UpdateStore.swift */; };
 		B4C5C148274B7B2B0012EAD7 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4C5C147274B7B2B0012EAD7 /* Home.swift */; };
+		B4F8312627579BD40073E1DE /* CourseDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F8312527579BD40073E1DE /* CourseDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		B4BB022D274E2ABD00EB124D /* UpdateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDetail.swift; sourceTree = "<group>"; };
 		B4BB022F274E2ED500EB124D /* UpdateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateStore.swift; sourceTree = "<group>"; };
 		B4C5C147274B7B2B0012EAD7 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		B4F8312527579BD40073E1DE /* CourseDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				B4925428273C1D8900E6ABC5 /* Info.plist */,
 				B4925425273C1D8900E6ABC5 /* Preview Content */,
 				B49AE4D92754B39000579A22 /* CourseList.swift */,
+				B4F8312527579BD40073E1DE /* CourseDetail.swift */,
 			);
 			path = test_2;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				B481D3F4274A943A000611EC /* MenuView.swift in Sources */,
 				B4C5C148274B7B2B0012EAD7 /* Home.swift in Sources */,
 				B465C271274BE15600DE27EB /* HomeView.swift in Sources */,
+				B4F8312627579BD40073E1DE /* CourseDetail.swift in Sources */,
 				B4925420273C1D8800E6ABC5 /* test_2App.swift in Sources */,
 				B49AE4DA2754B39000579A22 /* CourseList.swift in Sources */,
 			);

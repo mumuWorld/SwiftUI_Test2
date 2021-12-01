@@ -75,6 +75,8 @@ struct CourseView: View {
     
     @Binding var activeIndex: Int
     
+    @State var activeView: CGSize = .zero
+    
     var body: some View {
         ZStack(alignment: .top) {
             VStack {
@@ -125,6 +127,8 @@ struct CourseView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 210)
+                
+                Text("\(self.activeView.width)").font(.title)
             }
             .padding(.horizontal, 20)
             .padding(.top, show ? 30 : 0)
@@ -138,6 +142,24 @@ struct CourseView: View {
 //            .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
             //        .animation(.interactiveSpring())
             //        .animation(.spring())
+//            .gesture( //iOS14已作废
+//                show ?
+//                DragGesture()
+//                    .onChanged({ value in
+//                        guard value.translation.width < 100 else { return }
+//                        guard value.translation.width > 0 else { return }
+//                        self.activeView = value.translation
+//                    })
+//                    .onEnded({ value in
+//                        if abs(self.activeView.width) > 10 {
+//                            self.show = false
+//                            self.active = false
+//                            self.activeIndex = -1
+//                        }
+//                        self.activeView = .zero
+//                    })
+//                : nil
+//            )
             .onTapGesture {
                 self.show.toggle()
                 self.active.toggle()
@@ -149,6 +171,27 @@ struct CourseView: View {
             }
         }
         .frame(height: show ? screen.height : 280)
+//        .gesture(
+//            show ?
+//            DragGesture()
+//                .onChanged({ value in
+//                    guard value.translation.width < 100 else { return }
+//                    guard value.translation.width > 0 else { return }
+//                    self.activeView = value.translation
+//                })
+//                .onEnded({ value in
+//                    if abs(self.activeView.width) > 10 {
+//                        self.show = false
+//                        self.active = false
+//                        self.activeIndex = -1
+//                    }
+//                    self.activeView = .zero
+//                })
+//            : nil
+//        )
+        .scaleEffect(1 - self.activeView.width / 1000)
+        .rotation3DEffect(Angle(degrees: self.activeView.width / 10), axis: (x: 0, y: 10, z: 0))
+        .hueRotation(Angle(degrees: self.activeView.width / 10))
         .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0))
         .edgesIgnoringSafeArea(.all)
     }
