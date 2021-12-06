@@ -15,7 +15,7 @@ struct test_2App: App {
     
     var body: some Scene {
         WindowGroup {
-            TabBar()
+            PostList()
         }
     }
 }
