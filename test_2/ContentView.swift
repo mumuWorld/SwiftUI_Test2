@@ -132,7 +132,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environment(\.colorScheme, .dark)
     }
 }
 
@@ -234,7 +234,7 @@ struct BottomCardView: View {
         .frame(maxWidth: .infinity)
         .padding(.top, 10)
         .padding(.horizontal, 20)
-        .background(Color.white)
+        .background(BlurView(style: .dark))
         .cornerRadius(30)
         .shadow(radius: 20)
     }
